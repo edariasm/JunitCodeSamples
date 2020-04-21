@@ -1,0 +1,79 @@
+AssertEquals(expected, actual)
+Results true when expected is equal to actual
+
+
+AssertArrayEquals(expectedArray, actualArray)
+Results true when expectedArray is equal (exactly) to actualArray
+
+
+AssertIterableEquals(expectedArray, actualArray)
+Results true when iterations results are the same
+
+TEST DRIVEN METHODOLOGY
+Write the test code first, then write the code to make it pass
+
+1. You need to write a method that returns something to be able to write the test, based on the test case requirement
+2. Write the test case in the test class, within the instance of the class to test, this is based on the test case.
+3. Test has to contain the expected result and the actual result will be the execution of the method that is matter of test. 
+4. Then you write the code 
+5. Run the test, if the result is green, the code and the test are correct. 
+
+MAVEN SUREFIRE PLUGIN INTEGRATION
+JUnit can be added via Maven when build processes require test. It is done in the pom.xml with 
+<build>
+	<plugins>
+		<plugin>
+			<artifactId>maven-surefire-plugin</artifactId>
+			<version>2.22.1</version>
+		</plugin>	
+	</plugins>
+</build>
+
+Then run as maven build with target "test" and it will run the the tests
+
+HOOKS
+Allows to initialize variables before test methods are executed, and tears down once all methods are executed
+
+lifecycle hooks
+
+@BeforeAll and  @AfterAll require to be static methods in order to run, due to static methods are not dependent on an instance 
+@BeforeEach : runs before each test method
+AfterEach : runs after each test method
+
+
+Other anotations
+@DisplayName("Displays this name in the testing results")
+Works to know in a large test plan which test case is failing. 
+
+@Disable
+in case a test case is a work in progress, this annotations makes JUnit not to run this specific test
+
+Conditional execution
+@EnableOnOS(OS.LINUX)
+@EnableOnJre(JRE.JAVA11)
+@EnableIf
+@EnableIfSystemProperty
+@EnableIfEnvironmentVariable
+
+Assumptions
+This is another import from the Jupiter API
+@asummeTrue(true)
+
+Assert All
+@AssertAll is used to test multiple assertions using lambdas
+
+@assertAll(
+	() -> assertEquals(4, mathUtils.multiply(2,2),
+	() -> assertEquals(0, mathUtils.multiply(0,2),
+	() -> assertEquals(-2, mathUtils.multiply(-2,1)
+)
+
+//this is not valid in JUnit 4 since it doesn't have lambda expressions
+
+NESTED TEST CLASSES
+Is used to categorize test cases and report comes in a nested form
+
+REPEATED TEST
+@RepeateadTest repetitions are performed and is possible to mange the test class depending on the repetition that is happening
+
+@Tag will let you give a name to the classes, and run only the tests with the tag. Configuration is required in eclipse and in MAVEN
