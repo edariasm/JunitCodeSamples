@@ -77,3 +77,5 @@ REPEATED TEST
 @RepeateadTest repetitions are performed and is possible to mange the test class depending on the repetition that is happening
 
 @Tag will let you give a name to the classes, and run only the tests with the tag. Configuration is required in eclipse and in MAVEN
+
+Adding notes
